@@ -1,0 +1,58 @@
+{
+  "name": "koa-typescript-seed",
+  "version": "1.0.0",
+  "description": "Koa + TypeScript starter kit",
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^4.2.0",
+    "@types/koa-helmet": "^3.1.2",
+    "@types/koa-passport": "^4.0.2",
+    "@types/koa-router": "^7.0.32",
+    "@types/koa-session": "^5.7.4",
+    "@types/koa__cors": "^2.2.2",
+    "@types/node": "^10.7.0",
+    "@types/passport-facebook": "^2.1.8",
+    "@types/passport-local": "^1.0.33",
+    "nodemon": "^1.18.5",
+    "prettier": "^1.14.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  },
+  "scripts": {
+    "postinstall": "bash ./setup-hooks.sh",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "watch": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
+    "start": "node ./dist/server.js",
+    "build-ts": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm i && npm run tslint && npm run build-ts",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuriykuzin/koa-typescript-seed.git"
+  },
+  "keywords": [
+    "koa",
+    "typescript"
+  ],
+  "author": "Yuriy Kuzin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuriykuzin/koa-typescript-seed/issues"
+  },
+  "homepage": "https://github.com/yuriykuzin/koa-typescript-seed#readme"
+}
