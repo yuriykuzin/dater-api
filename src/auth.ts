@@ -26,45 +26,35 @@ let tmpProfile: {} = {};
 
 export class Auth {
   public static setupStrategies(): void {
-    passport.serializeUser(
-      (user: { id: number }, done: (err: any, id?: number | undefined) => void) => {
-        done(null, user.id);
-      },
-    );
+    passport.serializeUser((user: { id: number }, done: Function) => {
+      done(null, user.id);
+    });
 
-    passport.deserializeUser(
-      async (_id: number, done: (err: any, user?: {} | undefined) => void) => {
+    passport.deserializeUser(async (_id: number, done: Function) => {
+      try {
+        const user: IUser = await fetchUser();
+        done(null, { user, tmpProfile });
+      } catch (err) {
+        done(err);
+      }
+    });
+
+    passport.use(
+      new LocalStrategy(async (username: string, password: string, done: Function) => {
         try {
           const user: IUser = await fetchUser();
-          done(null, { user, tmpProfile });
+
+          if (username === user.username && password === user.password) {
+            done(null, user);
+
+            return;
+          }
+
+          done(null, false);
         } catch (err) {
           done(err);
         }
-      },
-    );
-
-    passport.use(
-      new LocalStrategy(
-        async (
-          username: string,
-          password: string,
-          done: (err: any, user?: {} | undefined) => void,
-        ) => {
-          try {
-            const user: IUser = await fetchUser();
-
-            if (username === user.username && password === user.password) {
-              done(null, user);
-
-              return;
-            }
-
-            done(null, false);
-          } catch (err) {
-            done(err);
-          }
-        },
-      ),
+      }),
     );
 
     passport.use(
@@ -85,7 +75,7 @@ export class Auth {
     );
   }
 
-  public static guard(ctx: Context, next: Function): Promise<any> | void {
+  public static addGuard(ctx: Context, next: Function): Promise<any> | void {
     if (ctx.isAuthenticated()) {
       return next();
     }
