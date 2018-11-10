@@ -1,7 +1,7 @@
 {
-  "name": "koa-typescript-seed",
+  "name": "datewizard",
   "version": "1.0.0",
-  "description": "Koa + TypeScript starter kit",
+  "description": "Datewizard",
   "dependencies": {
     "@koa/cors": "2.2.2",
     "koa": "2.6.1",
@@ -36,6 +36,9 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "watch": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
     "start": "node ./dist/server.js",
+    "start-local": "(npm run start-redis) & (npm run start-mongo) & npm start",
+    "start-redis": "redis-server /usr/local/etc/redis.conf",
+    "start-mongo": "mongod --config /usr/local/etc/mongod.conf",
     "build-ts": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && npm run build-ts"
