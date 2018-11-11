@@ -1,2 +1,3 @@
-# datewizard
-Date Wizard App
+# dater-api
+
+Dater App Backend

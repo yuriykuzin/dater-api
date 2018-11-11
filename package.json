@@ -1,7 +1,7 @@
 {
-  "name": "datewizard",
+  "name": "dater-api",
   "version": "1.0.0",
-  "description": "Datewizard",
+  "description": "Dater App API",
   "dependencies": {
     "@koa/cors": "2.2.2",
     "koa": "2.6.1",
